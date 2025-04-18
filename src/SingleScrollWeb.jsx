@@ -1,5 +1,3 @@
-// src/components/SingleScrollWebsite.jsx
-
 import { useState, useEffect, useRef } from 'react';
 
 const SingleScrollWebsite = () => {
@@ -51,7 +49,7 @@ const SingleScrollWebsite = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex-shrink-0">
-              <span className="text-2xl font-bold text-blue-600">EduHope</span>
+              <span className="text-2xl font-bold text-green-600">Kartavyapath</span>
             </div>
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
@@ -61,8 +59,8 @@ const SingleScrollWebsite = () => {
                     onClick={() => scrollToSection(section)}
                     className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
                       activeSection === section
-                        ? 'text-blue-600 font-semibold'
-                        : 'text-gray-600 hover:text-blue-500'
+                        ? 'text-green-600 font-semibold'
+                        : 'text-gray-600 hover:text-green-500'
                     }`}
                   >
                     {section.charAt(0).toUpperCase() + section.slice(1).replace(/([A-Z])/g, ' $1')}
@@ -71,7 +69,7 @@ const SingleScrollWebsite = () => {
               </div>
             </div>
             <div className="md:hidden">
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium">
+              <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium">
                 Donate
               </button>
             </div>
@@ -82,23 +80,23 @@ const SingleScrollWebsite = () => {
       {/* Home Section */}
       <section 
         ref={sectionRefs.home} 
-        className="min-h-screen flex flex-col justify-center pt-16 pb-12 bg-gradient-to-br from-blue-50 to-purple-50"
+        className="min-h-screen flex flex-col justify-center pt-16 pb-12 bg-gradient-to-br from-green-50 to-yellow-50"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-1/2 md:pr-12">
-              <h1 className="text-4xl md:text-5xl font-bold text-blue-600 mb-6">
-                Transforming Lives Through Quality Education
+              <h1 className="text-4xl md:text-5xl font-bold text-green-600 mb-6">
+                Illuminating Futures Through Education
               </h1>
               <p className="text-xl text-gray-700 mb-8">
-                Helping every child reach their full potential regardless of background or circumstance
+                Empowering underprivileged children in Ranchi through quality education, mentorship, and community support
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md py-3 px-6 shadow-md transition-colors duration-200">
+                <button className="bg-green-600 hover:bg-green-700 text-white font-medium rounded-md py-3 px-6 shadow-md transition-colors duration-200">
                   Donate Now
                 </button>
                 <button 
-                  className="bg-white hover:bg-gray-100 text-blue-600 font-medium rounded-md py-3 px-6 border border-blue-600 shadow-sm transition-colors duration-200"
+                  className="bg-white hover:bg-gray-100 text-green-600 font-medium rounded-md py-3 px-6 border border-green-600 shadow-sm transition-colors duration-200"
                   onClick={() => scrollToSection('getInvolved')}
                 >
                   Get Involved
@@ -108,7 +106,8 @@ const SingleScrollWebsite = () => {
             <div className="md:w-1/2 mt-12 md:mt-0">
               <div className="relative h-64 sm:h-72 md:h-96 overflow-hidden rounded-lg shadow-xl">
                 <div className="absolute inset-0 bg-gray-300">
-                  <img src="/api/placeholder/600/400" alt="Children learning" className="w-full h-full object-cover" />
+                  
+                  <img src="../photos/image_1.jpg" alt="Children learning in Ranchi center" className="w-full h-full object-cover" />
                 </div>
               </div>
             </div>
@@ -116,20 +115,20 @@ const SingleScrollWebsite = () => {
           
           <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div className="p-4 bg-white rounded-lg shadow">
-              <div className="text-3xl font-bold text-blue-600">5,000+</div>
-              <div className="text-gray-600">Children Reached</div>
+              <div className="text-3xl font-bold text-green-600">500+</div>
+              <div className="text-gray-600">Children Educated</div>
             </div>
             <div className="p-4 bg-white rounded-lg shadow">
-              <div className="text-3xl font-bold text-blue-600">120</div>
-              <div className="text-gray-600">Communities Served</div>
+              <div className="text-3xl font-bold text-green-600">5</div>
+              <div className="text-gray-600">Learning Centers</div>
             </div>
             <div className="p-4 bg-white rounded-lg shadow">
-              <div className="text-3xl font-bold text-blue-600">75</div>
-              <div className="text-gray-600">Schools Supported</div>
+              <div className="text-3xl font-bold text-green-600">15</div>
+              <div className="text-gray-600">Dedicated Teachers</div>
             </div>
             <div className="p-4 bg-white rounded-lg shadow">
-              <div className="text-3xl font-bold text-blue-600">350</div>
-              <div className="text-gray-600">Teachers Trained</div>
+              <div className="text-3xl font-bold text-green-600">2</div>
+              <div className="text-gray-600">Years of Impact</div>
             </div>
           </div>
         </div>
@@ -143,33 +142,33 @@ const SingleScrollWebsite = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Our Story</h2>
-            <div className="h-1 w-24 bg-blue-600 mx-auto mt-4"></div>
+            <div className="h-1 w-24 bg-green-600 mx-auto mt-4"></div>
           </div>
           
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-1/2 mb-12 md:mb-0">
               <div className="relative h-64 sm:h-72 md:h-96 overflow-hidden rounded-lg shadow-xl">
                 <div className="absolute inset-0 bg-gray-300">
-                  <img src="/api/placeholder/600/400" alt="Our mission" className="w-full h-full object-cover" />
+                  <img src="../photos/image_2.jpg" alt="Founder Mritunjay Sharma with students" className="w-full h-full object-cover" />
                 </div>
               </div>
             </div>
             <div className="md:w-1/2 md:pl-12">
               <h3 className="text-2xl font-semibold text-gray-800 mb-4">Our Mission</h3>
               <p className="text-gray-600 mb-6">
-                At EduHope, we believe that education is a fundamental right, not a privilege. Our mission is to create equal educational opportunities for underserved children, breaking the cycle of poverty through knowledge, skills, and empowerment.
+                At kartavyapath, we believe in the transformative power of education to break the cycle of poverty. Our mission is to provide quality education, emotional support, and essential resources to underprivileged children in Ranchi, enabling them to build brighter futures for themselves and their communities.
               </p>
               <p className="text-gray-600 mb-6">
-                Founded in 2015, what began as a small initiative with just one classroom and three volunteer teachers has grown into a comprehensive educational support system that works across 12 regions to bridge educational gaps and empower communities.
+                Founded by Mritunjay Sharma in 2022, what began as a single classroom with just a handful of students has grown into a network of 5 thriving learning centers across Ranchi, serving hundreds of children who would otherwise have limited educational opportunities.
               </p>
               <div className="grid grid-cols-2 gap-4 mb-8">
                 <div>
-                  <h4 className="font-semibold text-blue-600 mb-2">Our Vision</h4>
-                  <p className="text-gray-600 text-sm">A world where every child has access to quality education regardless of their circumstances.</p>
+                  <h4 className="font-semibold text-green-600 mb-2">Our Vision</h4>
+                  <p className="text-gray-600 text-sm">A Ranchi where every child, regardless of socioeconomic background, has equal access to quality education and the opportunity to fulfill their potential.</p>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-blue-600 mb-2">Our Values</h4>
-                  <p className="text-gray-600 text-sm">Equity, Excellence, Empowerment, Collaboration, and Sustainability.</p>
+                  <h4 className="font-semibold text-green-600 mb-2">Our Values</h4>
+                  <p className="text-gray-600 text-sm">Compassion, Excellence, Community, Dedication, and Sustainable Impact.</p>
                 </div>
               </div>
             </div>
@@ -185,9 +184,9 @@ const SingleScrollWebsite = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Our Programs</h2>
-            <div className="h-1 w-24 bg-blue-600 mx-auto mt-4"></div>
+            <div className="h-1 w-24 bg-green-600 mx-auto mt-4"></div>
             <p className="mt-6 text-lg text-gray-600 max-w-3xl mx-auto">
-              We take a holistic approach to education, addressing not just academic needs but the entire ecosystem that supports a child's learning journey.
+              We believe in holistic development through comprehensive educational support tailored to the unique needs of children in Ranchi.
             </p>
           </div>
           
@@ -195,14 +194,14 @@ const SingleScrollWebsite = () => {
             {/* Program 1 */}
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
               <div className="h-48 bg-gray-300">
-                <img src="/api/placeholder/400/300" alt="Core Educational Support" className="w-full h-full object-cover" />
+                <img src="../photos/image_3.jpg" alt="After-School Learning Program" className="w-full h-full object-cover" />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-800 mb-3">Core Educational Support</h3>
+                <h3 className="text-xl font-semibold text-gray-800 mb-3">After-School Learning</h3>
                 <p className="text-gray-600 mb-4">
-                  Providing foundational resources to help children access and succeed in education through supplies, scholarships, and infrastructure improvement.
+                  Supplementary education in core subjects like Mathematics, Science, Hindi, and English to strengthen academic foundations and support formal schooling.
                 </p>
-                <button className="text-blue-600 font-medium hover:text-blue-700 flex items-center">
+                <button className="text-green-600 font-medium hover:text-green-700 flex items-center">
                   Learn more
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4 ml-1">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
@@ -214,14 +213,14 @@ const SingleScrollWebsite = () => {
             {/* Program 2 */}
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
               <div className="h-48 bg-gray-300">
-                <img src="/api/placeholder/400/300" alt="Teacher Training" className="w-full h-full object-cover" />
+                <img src="../photos/image_4.jpg" alt="Digital Literacy Program" className="w-full h-full object-cover" />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-800 mb-3">Teacher Training & Development</h3>
+                <h3 className="text-xl font-semibold text-gray-800 mb-3">Digital Literacy</h3>
                 <p className="text-gray-600 mb-4">
-                  Equipping educators with innovative teaching methodologies, subject expertise, and classroom management strategies.
+                  Bridging the digital divide by equipping children with computer skills, internet literacy, and access to educational technology essential for the modern world.
                 </p>
-                <button className="text-blue-600 font-medium hover:text-blue-700 flex items-center">
+                <button className="text-green-600 font-medium hover:text-green-700 flex items-center">
                   Learn more
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4 ml-1">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
@@ -233,14 +232,14 @@ const SingleScrollWebsite = () => {
             {/* Program 3 */}
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
               <div className="h-48 bg-gray-300">
-                <img src="/api/placeholder/400/300" alt="Digital Learning" className="w-full h-full object-cover" />
+                <img src="../photos/image_5.jpg" alt="Life Skills Program" className="w-full h-full object-cover" />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-800 mb-3">Digital Learning Initiative</h3>
+                <h3 className="text-xl font-semibold text-gray-800 mb-3">Life Skills & Arts</h3>
                 <p className="text-gray-600 mb-4">
-                  Bridging the digital divide with computer literacy programs, digital libraries, and technology skills development for the future.
+                  Developing creativity, confidence and essential life skills through art, music, dance, sports, and personal development workshops.
                 </p>
-                <button className="text-blue-600 font-medium hover:text-blue-700 flex items-center">
+                <button className="text-green-600 font-medium hover:text-green-700 flex items-center">
                   Learn more
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4 ml-1">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
@@ -255,7 +254,7 @@ const SingleScrollWebsite = () => {
       {/* Impact Section */}
       <section 
         ref={sectionRefs.impact} 
-        className="py-24 bg-blue-600 text-white"
+        className="py-24 bg-green-600 text-white"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -269,58 +268,58 @@ const SingleScrollWebsite = () => {
                 <h3 className="text-2xl font-semibold mb-4">Success Stories</h3>
                 <div className="bg-white rounded-lg p-6 text-gray-700 shadow-lg">
                   <p className="italic mb-4">
-                    "Before EduHope came to our village, I never thought I could go to high school. Now I'm preparing for university and want to become a teacher to help other children like me."
+                    "Before joining kartavyapath's center in Daladili, I was struggling in school and had almost given up. The teachers here helped me understand subjects that confused me. Now I've passed my 10th with first division and dream of becoming an engineer."
                   </p>
                   <div className="flex items-center">
-                    <div className="w-12 h-12 bg-gray-300 rounded-full flex-shrink-0">
+                    {/* <div className="w-12 h-12 bg-gray-300 rounded-full flex-shrink-0">
                       <img src="/api/placeholder/100/100" alt="Student" className="w-full h-full object-cover rounded-full" />
-                    </div>
+                    </div> */}
                     <div className="ml-4">
-                      <div className="font-medium">Mia Johnson</div>
-                      <div className="text-sm text-gray-500">Student, Age 17</div>
+                      <div className="font-medium">student name</div>
+                      <div className="text-sm text-gray-500">Student, Age 16</div>
                     </div>
                   </div>
                 </div>
               </div>
               
               <div>
-                <h3 className="text-2xl font-semibold mb-4">Long-term Results</h3>
+                <h3 className="text-2xl font-semibold mb-4">Our Achievements</h3>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 mr-2 flex-shrink-0">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <span>85% of our students complete secondary education compared to the 45% regional average</span>
+                    <span>90% of our students continue education beyond primary school, compared to the 60% local average</span>
                   </li>
                   <li className="flex items-start">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 mr-2 flex-shrink-0">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <span>Teachers trained by our program show a 60% increase in student engagement metrics</span>
+                    <span>75% improvement in academic performance after one year in our program</span>
                   </li>
                   <li className="flex items-start">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 mr-2 flex-shrink-0">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <span>Communities with our programs report 40% higher continuing education rates</span>
+                    <span>Over 50 former students now pursuing higher education in colleges across Jharkhand</span>
                   </li>
                 </ul>
               </div>
             </div>
             
             <div>
-              <h3 className="text-2xl font-semibold mb-4">Featured Story</h3>
+              <h3 className="text-2xl font-semibold mb-4">Center Spotlight</h3>
               <div className="bg-white rounded-lg overflow-hidden shadow-lg">
                 <div className="h-64 bg-gray-300">
-                  <img src="/api/placeholder/600/400" alt="School transformation" className="w-full h-full object-cover" />
+                  <img src="../photos/image_6.jpg" alt="Ratu Road Center" className="w-full h-full object-cover" />
                 </div>
                 <div className="p-6 text-gray-700">
-                  <h4 className="text-xl font-semibold mb-2">Transforming Riverside School</h4>
+                  <h4 className="text-xl font-semibold mb-2">Daladili Center</h4>
                   <p className="text-gray-600 mb-4">
-                    When we first arrived at Riverside School in 2018, there was just one teacher for 60 students, no proper supplies, and a leaking roof. Today, the school has 6 qualified teachers, a computer lab, and students regularly winning regional academic competitions.
+                    Our first learning center started in 2022 with just 15 children. Today, it serves over 120 children with a dedicated team of 15 teachers, becoming a vibrant educational hub for the community.
                   </p>
-                  <button className="text-blue-600 font-medium hover:text-blue-700 flex items-center">
-                    Read the full story
+                  <button className="text-green-600 font-medium hover:text-green-700 flex items-center">
+                    Visit our centers
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4 ml-1">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                     </svg>
@@ -340,16 +339,16 @@ const SingleScrollWebsite = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Get Involved</h2>
-            <div className="h-1 w-24 bg-blue-600 mx-auto mt-4"></div>
+            <div className="h-1 w-24 bg-green-600 mx-auto mt-4"></div>
             <p className="mt-6 text-lg text-gray-600 max-w-3xl mx-auto">
-              There are many ways you can support our mission to provide quality education to children in need.
+              Join our community effort to transform children's lives in Ranchi through education and empowerment.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Donate */}
             <div className="bg-white rounded-lg shadow-md p-6">
-              <div className="bg-blue-100 text-blue-600 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+              <div className="bg-green-100 text-green-600 rounded-full w-12 h-12 flex items-center justify-center mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15.91 11.672a.375.375 0 010 .656l-5.603 3.113a.375.375 0 01-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112z" />
@@ -357,58 +356,58 @@ const SingleScrollWebsite = () => {
               </div>
               <h3 className="text-xl font-semibold text-gray-800 mb-3">Donate</h3>
               <p className="text-gray-600 mb-4">
-                Your financial support helps us provide educational resources, scholarships, and programs to children in need.
+                Support our centers with financial contributions that help provide educational materials, meals, and teacher salaries.
               </p>
-              <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md py-2 px-4 shadow-sm transition-colors duration-200">
+              <button className="w-full bg-green-600 hover:bg-green-700 text-white font-medium rounded-md py-2 px-4 shadow-sm transition-colors duration-200">
                 Donate Now
               </button>
             </div>
             
             {/* Volunteer */}
             <div className="bg-white rounded-lg shadow-md p-6">
-              <div className="bg-blue-100 text-blue-600 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+              <div className="bg-green-100 text-green-600 rounded-full w-12 h-12 flex items-center justify-center mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
                 </svg>
               </div>
               <h3 className="text-xl font-semibold text-gray-800 mb-3">Volunteer</h3>
               <p className="text-gray-600 mb-4">
-                Share your skills and time as a teacher, mentor, event organizer, or administrative supporter.
+                Share your skills as a teacher, mentor, storyteller, or help with center management and special events. Be a part of our team.
               </p>
-              <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md py-2 px-4 shadow-sm transition-colors duration-200">
+              <button className="w-full bg-green-600 hover:bg-green-700 text-white font-medium rounded-md py-2 px-4 shadow-sm transition-colors duration-200">
                 Join Our Team
               </button>
             </div>
             
             {/* Partner */}
             <div className="bg-white rounded-lg shadow-md p-6">
-              <div className="bg-blue-100 text-blue-600 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+              <div className="bg-green-100 text-green-600 rounded-full w-12 h-12 flex items-center justify-center mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
                 </svg>
               </div>
               <h3 className="text-xl font-semibold text-gray-800 mb-3">Partner</h3>
               <p className="text-gray-600 mb-4">
-                Corporate partnerships, NGO alliances, and school collaborations can amplify our impact significantly.
+                Businesses, schools, and organizations can partner with us to create lasting impact through CSR initiatives and collaborative projects.
               </p>
-              <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md py-2 px-4 shadow-sm transition-colors duration-200">
+              <button className="w-full bg-green-600 hover:bg-green-700 text-white font-medium rounded-md py-2 px-4 shadow-sm transition-colors duration-200">
                 Become a Partner
               </button>
             </div>
             
-            {/* Fundraise */}
+            {/* Sponsor */}
             <div className="bg-white rounded-lg shadow-md p-6">
-              <div className="bg-blue-100 text-blue-600 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+              <div className="bg-green-100 text-green-600 rounded-full w-12 h-12 flex items-center justify-center mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">Fundraise</h3>
+              <h3 className="text-xl font-semibold text-gray-800 mb-3">Sponsor a Child</h3>
               <p className="text-gray-600 mb-4">
-                Create your own campaign through birthday fundraisers, community events, or athletic challenges.
+                Make a direct impact by sponsoring a child's education, including school supplies, uniforms, meals, and extracurricular activities.
               </p>
-              <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md py-2 px-4 shadow-sm transition-colors duration-200">
-                Start a Campaign
+              <button className="w-full bg-green-600 hover:bg-green-700 text-white font-medium rounded-md py-2 px-4 shadow-sm transition-colors duration-200">
+                Sponsor Now
               </button>
             </div>
           </div>
@@ -423,7 +422,7 @@ const SingleScrollWebsite = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold">Contact Us</h2>
-            <div className="h-1 w-24 bg-blue-500 mx-auto mt-4"></div>
+            <div className="h-1 w-24 bg-green-500 mx-auto mt-4"></div>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -449,7 +448,7 @@ const SingleScrollWebsite = () => {
                   </div>
                   <div>
                     <div className="font-medium text-blue-300">Phone</div>
-                    <a href="tel:+15551234567" className="text-gray-300 hover:text-white">(555) 123-4567</a>
+                    <a href="tel:+15551234567" className="text-gray-300 hover:text-white">+91-1234567890</a>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -555,9 +554,9 @@ const SingleScrollWebsite = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-6 md:mb-0">
-              <div className="text-2xl font-bold text-blue-400 mb-2">EduHope</div>
+              <div className="text-2xl font-bold text-blue-400 mb-2">kartavyapath</div>
               <p className="text-gray-400 text-sm">
-                Transforming lives through education since 2015
+                Transforming lives through education since 2022
               </p>
             </div>
             <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8 text-center md:text-left">
@@ -582,7 +581,7 @@ const SingleScrollWebsite = () => {
             </div>
           </div>
           <div className="mt-8 pt-6 border-t border-gray-800 text-center text-gray-500 text-sm">
-            <p>&copy; {new Date().getFullYear()} EduHope. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} kartavyapath. All rights reserved.</p>
           </div>
         </div>
       </footer>
