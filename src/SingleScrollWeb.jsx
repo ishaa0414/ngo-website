@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-
+import heroImage from '/photos/image_1.JPG';
 const SingleScrollWebsite = () => {
   const [activeSection, setActiveSection] = useState('home');
   const sectionRefs = {
@@ -107,7 +107,7 @@ const SingleScrollWebsite = () => {
               <div className="relative h-64 sm:h-72 md:h-96 overflow-hidden rounded-lg shadow-xl">
                 <div className="absolute inset-0 bg-gray-300">
                   
-                  <img src="/photos/image_1.JPG" alt="Children learning in Ranchi center" className="w-full h-full object-cover" />
+                  <img src={heroImage} alt="Children learning in Ranchi center" className="w-full h-full object-cover" />
                 </div>
               </div>
             </div>
