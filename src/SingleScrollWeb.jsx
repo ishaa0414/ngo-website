@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import heroImage from '/photos/image_1.JPG';
+import heroImage from './assets/photos/image_2.jpg';
 const SingleScrollWebsite = () => {
   const [activeSection, setActiveSection] = useState('home');
   const sectionRefs = {
