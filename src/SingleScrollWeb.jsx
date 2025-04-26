@@ -1,5 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import heroImage from './assets/photos/image_2.jpg';
+import secondImg from './assets/photos/image_3.jpg';
+import thirdImg from './assets/photos/image_4.jpg';
+import fourthImg from './assets/photos/image_5.jpg';
+import fifthImg from './assets/photos/image_6.jpg';
+import sevenImg from './assets/photos/image_7.jpg';
+import eightImg from './assets/photos/eightImg.JPG';
+import nineImg from './assets/photos/nineImg.JPG';
+import tenImg from './assets/photos/tenImg.JPG';
 const SingleScrollWebsite = () => {
   const [activeSection, setActiveSection] = useState('home');
   const sectionRefs = {
@@ -10,7 +18,8 @@ const SingleScrollWebsite = () => {
     getInvolved: useRef(null),
     contact: useRef(null),
   };
-
+  const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
+  const heroImages = [heroImage, secondImg,thirdImg,fourthImg,fifthImg]; // Add more images to this array as needed
   // Handle scroll to update active section
   useEffect(() => {
     const handleScroll = () => {
@@ -26,11 +35,41 @@ const SingleScrollWebsite = () => {
         }
       }
     };
-
-    window.addEventListener('scroll', handleScroll);
+   
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentHeroSlide(prev => (prev + 1) % heroImages.length);
+    }, 5000); // Change image every 5 seconds
+    
+    return () => clearInterval(interval);
+  }, [heroImages.length]);
+  
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [slideCount, setSlideCount] = useState(4); // Total number of team members
+  const [slidesToShow, setSlidesToShow] = useState(3);
+  const [slidesToScroll, setSlidesToScroll] = useState(1);
+  
+  // Add this useEffect to handle responsive behavior
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setSlidesToShow(1);
+      } else if (window.innerWidth < 1024) {
+        setSlidesToShow(2);
+      } else {
+        setSlidesToShow(3);
+      }
+    };
+  
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
   // Smooth scroll to section
   const scrollToSection = (sectionId) => {
     const element = sectionRefs[sectionId].current;
@@ -78,7 +117,7 @@ const SingleScrollWebsite = () => {
       </nav>
 
       {/* Home Section */}
-      <section 
+      {/* <section 
         ref={sectionRefs.home} 
         className="min-h-screen flex flex-col justify-center pt-16 pb-12 bg-gradient-to-br from-green-50 to-yellow-50"
       >
@@ -132,7 +171,98 @@ const SingleScrollWebsite = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
+     <section 
+  ref={sectionRefs.home} 
+  className="min-h-screen flex flex-col pt-16 pb-12"
+>
+  {/* Hero section with image carousel */}
+  <div className="relative flex-grow">
+    {/* Background Image Carousel */}
+    <div className="absolute inset-0 w-full h-full overflow-hidden">
+      {heroImages.map((image, index) => (
+        <div 
+          key={index}
+          className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
+            currentHeroSlide === index ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
+          <img 
+            src={image} 
+            alt={`Hero image ${index + 1}`} 
+            className="w-full h-full object-cover object-center"
+          />
+        </div>
+      ))}
+      
+      {/* Overlay gradient to make text readable */}
+      <div className="absolute inset-0 bg-gradient-to-r from-green-900/80 to-transparent"></div>
+      
+      {/* Carousel Navigation Dots */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+        {heroImages.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentHeroSlide(index)}
+            className={`w-3 h-3 rounded-full focus:outline-none transition-colors ${
+              currentHeroSlide === index ? 'bg-white' : 'bg-white/50'
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+    
+    {/* Content that overlaps the image */}
+    <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center h-full py-12">
+      <div className="flex flex-col md:flex-row items-center">
+        <div className="md:w-2/3 md:pr-12 text-white">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white drop-shadow-lg">
+            Illuminating Futures Through Education
+          </h1>
+          <p className="text-xl mb-8 text-white/90 drop-shadow-md">
+            Empowering underprivileged children in Ranchi through quality education, mentorship, and community support
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <button className="bg-green-600 hover:bg-green-700 text-white font-medium rounded-md py-3 px-6 shadow-md transition-colors duration-200">
+              Donate Now
+            </button>
+            <button 
+              className="bg-white hover:bg-gray-100 text-green-600 font-medium rounded-md py-3 px-6 border border-green-600 shadow-sm transition-colors duration-200"
+              onClick={() => scrollToSection('getInvolved')}
+            >
+              Get Involved
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  {/* Stats section outside of image overlap */}
+  <div className="bg-gradient-to-br from-green-50 to-yellow-50 py-10">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div className="p-4 bg-white rounded-lg shadow">
+          <div className="text-3xl font-bold text-green-600">500+</div>
+          <div className="text-gray-600">Children Educated</div>
+        </div>
+        <div className="p-4 bg-white rounded-lg shadow">
+          <div className="text-3xl font-bold text-green-600">5</div>
+          <div className="text-gray-600">Learning Centers</div>
+        </div>
+        <div className="p-4 bg-white rounded-lg shadow">
+          <div className="text-3xl font-bold text-green-600">15</div>
+          <div className="text-gray-600">Dedicated Teachers</div>
+        </div>
+        <div className="p-4 bg-white rounded-lg shadow">
+          <div className="text-3xl font-bold text-green-600">2</div>
+          <div className="text-gray-600">Years of Impact</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* About Section */}
       <section 
@@ -149,7 +279,7 @@ const SingleScrollWebsite = () => {
             <div className="md:w-1/2 mb-12 md:mb-0">
               <div className="relative h-64 sm:h-72 md:h-96 overflow-hidden rounded-lg shadow-xl">
                 <div className="absolute inset-0 bg-gray-300">
-                  <img src="../photos/image_2.jpg" alt="Founder Mritunjay Sharma with students" className="w-full h-full object-cover" />
+                  <img src={heroImage} alt="Founder Mritunjay Sharma with students" className="w-full h-full object-cover" />
                 </div>
               </div>
             </div>
@@ -194,7 +324,7 @@ const SingleScrollWebsite = () => {
             {/* Program 1 */}
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
               <div className="h-48 bg-gray-300">
-                <img src="../photos/image_3.jpg" alt="After-School Learning Program" className="w-full h-full object-cover" />
+                <img src={thirdImg} alt="After-School Learning Program" className="w-full h-full object-cover" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-semibold text-gray-800 mb-3">After-School Learning</h3>
@@ -213,7 +343,7 @@ const SingleScrollWebsite = () => {
             {/* Program 2 */}
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
               <div className="h-48 bg-gray-300">
-                <img src="../photos/image_4.jpg" alt="Digital Literacy Program" className="w-full h-full object-cover" />
+                <img src={fourthImg} alt="Digital Literacy Program" className="w-full h-full object-cover" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-semibold text-gray-800 mb-3">Digital Literacy</h3>
@@ -232,7 +362,7 @@ const SingleScrollWebsite = () => {
             {/* Program 3 */}
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
               <div className="h-48 bg-gray-300">
-                <img src="../photos/image_5.jpg" alt="Life Skills Program" className="w-full h-full object-cover" />
+                <img src={fifthImg} alt="Life Skills Program" className="w-full h-full object-cover" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-semibold text-gray-800 mb-3">Life Skills & Arts</h3>
@@ -311,7 +441,7 @@ const SingleScrollWebsite = () => {
               <h3 className="text-2xl font-semibold mb-4">Center Spotlight</h3>
               <div className="bg-white rounded-lg overflow-hidden shadow-lg">
                 <div className="h-64 bg-gray-300">
-                  <img src="../photos/image_6.jpg" alt="Ratu Road Center" className="w-full h-full object-cover" />
+                  <img src={sevenImg} alt="Ratu Road Center" className="w-full h-full object-cover" />
                 </div>
                 <div className="p-6 text-gray-700">
                   <h4 className="text-xl font-semibold mb-2">Daladili Center</h4>
@@ -413,7 +543,315 @@ const SingleScrollWebsite = () => {
           </div>
         </div>
       </section>
+      {/* Our Team Section */}
+<section className="py-24 bg-white">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="text-center mb-16">
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Our Team</h2>
+      <div className="h-1 w-24 bg-green-600 mx-auto mt-4"></div>
+      <p className="mt-6 text-lg text-gray-600 max-w-3xl mx-auto">
+        Meet the dedicated individuals who are working tirelessly to bring education and hope to children in Ranchi.
+      </p>
+    </div>
 
+    {/* Team Carousel */}
+    <div className="relative">
+      {/* Carousel Container */}
+      <div className="overflow-hidden">
+        <div 
+          id="teamCarousel" 
+          className="flex transition-transform duration-300 ease-in-out"
+          style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+        >
+          {/* Team Member 1 */}
+          <div className="min-w-full md:min-w-[50%] lg:min-w-[33.333%] px-4">
+            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-md">
+              <div className="aspect-w-3 aspect-h-4 relative">
+                <img 
+                  src={tenImg} 
+                  alt="Mrityunjay Sharma" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-gray-800">Mrityunjay Sharma</h3>
+                <p className="text-sm text-blue-600 mb-3">Founder & Director</p>
+                <p className="text-gray-600">
+                  With over 15 years of experience in child education, Anita founded Kartavyapath to bring quality education to underprivileged children in Ranchi.
+                </p>
+                <div className="mt-4 flex space-x-3">
+                  <a href="#" className="text-blue-600 hover:text-blue-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
+                    </svg>
+                  </a>
+                  <a href="#" className="text-blue-400 hover:text-blue-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="min-w-full md:min-w-[50%] lg:min-w-[33.333%] px-4">
+            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-md">
+              <div className="aspect-w-3 aspect-h-4 relative">
+                <img 
+                  src={eightImg} 
+                  alt="Abhinav Sinha" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-gray-800">Sulochana Sharma</h3>
+                <p className="text-sm text-blue-600 mb-3">Volunteer</p>
+                <p className="text-gray-600">
+                Sulochana ensures the smooth running of all our centers, managing resources and coordinating volunteer efforts across Ranchi.
+                </p>
+                <div className="mt-4 flex space-x-3">
+                  <a href="#" className="text-blue-600 hover:text-blue-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
+                    </svg>
+                  </a>
+                  <a href="#" className="text-blue-400 hover:text-blue-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+           {/* Team Member 6 */}
+           <div className="min-w-full md:min-w-[50%] lg:min-w-[33.333%] px-4">
+            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-md">
+              <div className="aspect-w-3 aspect-h-4 relative">
+                <img 
+                  src={nineImg} 
+                  alt="Abhinav Sinha" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-gray-800">Santosh Kumar</h3>
+                <p className="text-sm text-blue-600 mb-3">Volunteer</p>
+                <p className="text-gray-600">
+                  Abhinav ensures the smooth running of all our centers, managing resources and coordinating volunteer efforts across Ranchi.
+                </p>
+                <div className="mt-4 flex space-x-3">
+                  <a href="#" className="text-blue-600 hover:text-blue-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
+                    </svg>
+                  </a>
+                  <a href="#" className="text-blue-400 hover:text-blue-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* Team Member 2 */}
+          <div className="min-w-full md:min-w-[50%] lg:min-w-[33.333%] px-4">
+            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-md">
+              <div className="aspect-w-3 aspect-h-4 relative">
+                <img 
+                  src="/api/placeholder/400/500" 
+                  alt="Rajesh Kumar" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-gray-800">Akash Gupta</h3>
+                <p className="text-sm text-blue-600 mb-3">Volunteer</p>
+                <p className="text-gray-600">
+                  Akash brings his expertise to develop engaging and effective learning programs tailored to the needs of our children.
+                </p>
+                <div className="mt-4 flex space-x-3">
+                  <a href="#" className="text-blue-600 hover:text-blue-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
+                    </svg>
+                  </a>
+                  <a href="#" className="text-blue-400 hover:text-blue-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Team Member 3 */}
+          <div className="min-w-full md:min-w-[50%] lg:min-w-[33.333%] px-4">
+            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-md">
+              <div className="aspect-w-3 aspect-h-4 relative">
+                <img 
+                  src="/api/placeholder/400/500" 
+                  alt="Sanat Vibhor" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-gray-800">Sanat Vibhor</h3>
+                <p className="text-sm text-blue-600 mb-3">Volunteer</p>
+                <p className="text-gray-600">
+                  Sanat works closely with local communities to identify children in need and build strong relationships with families and local leaders.
+                </p>
+                <div className="mt-4 flex space-x-3">
+                  <a href="#" className="text-blue-600 hover:text-blue-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
+                    </svg>
+                  </a>
+                  <a href="#" className="text-blue-400 hover:text-blue-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Team Member 4 */}
+          <div className="min-w-full md:min-w-[50%] lg:min-w-[33.333%] px-4">
+            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-md">
+              <div className="aspect-w-3 aspect-h-4 relative">
+                <img 
+                  src="/api/placeholder/400/500" 
+                  alt="Abhinav Sinha" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-gray-800">Abhinav Sinha</h3>
+                <p className="text-sm text-blue-600 mb-3">Volunteer</p>
+                <p className="text-gray-600">
+                  Abhinav ensures the smooth running of all our centers, managing resources and coordinating volunteer efforts across Ranchi.
+                </p>
+                <div className="mt-4 flex space-x-3">
+                  <a href="#" className="text-blue-600 hover:text-blue-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
+                    </svg>
+                  </a>
+                  <a href="#" className="text-blue-400 hover:text-blue-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+           {/* Team Member 5 */}
+           <div className="min-w-full md:min-w-[50%] lg:min-w-[33.333%] px-4">
+            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-md">
+              <div className="aspect-w-3 aspect-h-4 relative">
+                <img 
+                  src="/api/placeholder/400/500" 
+                  alt="Abhinav Sinha" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-gray-800">Abhinav Sinha</h3>
+                <p className="text-sm text-blue-600 mb-3">Volunteer</p>
+                <p className="text-gray-600">
+                  Abhinav ensures the smooth running of all our centers, managing resources and coordinating volunteer efforts across Ranchi.
+                </p>
+                <div className="mt-4 flex space-x-3">
+                  <a href="#" className="text-blue-600 hover:text-blue-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
+                    </svg>
+                  </a>
+                  <a href="#" className="text-blue-400 hover:text-blue-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+           {/* Team Member 6 */}
+           <div className="min-w-full md:min-w-[50%] lg:min-w-[33.333%] px-4">
+            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-md">
+              <div className="aspect-w-3 aspect-h-4 relative">
+                <img 
+                  src="/api/placeholder/400/500" 
+                  alt="Abhinav Sinha" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-gray-800">Abhinav Sinha</h3>
+                <p className="text-sm text-blue-600 mb-3">Volunteer</p>
+                <p className="text-gray-600">
+                  Abhinav ensures the smooth running of all our centers, managing resources and coordinating volunteer efforts across Ranchi.
+                </p>
+                <div className="mt-4 flex space-x-3">
+                  <a href="#" className="text-blue-600 hover:text-blue-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
+                    </svg>
+                  </a>
+                  <a href="#" className="text-blue-400 hover:text-blue-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Navigation Arrows */}
+      <button 
+        onClick={() => setCurrentSlide(prev => Math.max(prev - 1, 0))}
+        className="absolute top-1/2 left-4 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 rounded-full p-2 shadow-md z-10 focus:outline-none disabled:opacity-30 disabled:cursor-not-allowed"
+        disabled={currentSlide === 0}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+        </svg>
+      </button>
+      
+      <button 
+        onClick={() => setCurrentSlide(prev => Math.min(prev + 1, slideCount - slidesToShow))}
+        className="absolute top-1/2 right-4 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 rounded-full p-2 shadow-md z-10 focus:outline-none disabled:opacity-30 disabled:cursor-not-allowed"
+        disabled={currentSlide >= slideCount - slidesToShow}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+        </svg>
+      </button>
+
+      {/* Dots Navigation */}
+      <div className="flex justify-center space-x-2 mt-8">
+        {[...Array(Math.ceil(slideCount / slidesToScroll))].map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrentSlide(i * slidesToScroll)}
+            className={`w-3 h-3 rounded-full focus:outline-none ${
+              i * slidesToScroll === currentSlide ? 'bg-blue-600' : 'bg-gray-300'
+            }`}
+            aria-label={`Go to slide ${i + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
       {/* Contact Section */}
       <section 
         ref={sectionRefs.contact} 
@@ -448,7 +886,7 @@ const SingleScrollWebsite = () => {
                   </div>
                   <div>
                     <div className="font-medium text-blue-300">Phone</div>
-                    <a href="tel:+15551234567" className="text-gray-300 hover:text-white">+91-1234567890</a>
+                    <a href="tel:+15551234567" className="text-gray-300 hover:text-white">+91-8588869486</a>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -461,9 +899,9 @@ const SingleScrollWebsite = () => {
                   <div>
                     <div className="font-medium text-blue-300">Address</div>
                     <div className="text-gray-300">
-                      123 Education Way<br />
-                      Suite 400<br />
-                      Hope City, CA 90210
+                      Jalsa,   Road No-1<br />
+                     
+                      Daladili, Ranchi
                     </div>
                   </div>
                 </div>
