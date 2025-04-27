@@ -4,7 +4,7 @@ import secondImg from './assets/photos/image_3.jpg';
 import thirdImg from './assets/photos/image_4.jpg';
 import fourthImg from './assets/photos/image_5.jpg';
 import fifthImg from './assets/photos/image_6.jpg';
-import sevenImg from './assets/photos/image_7.jpg';
+import sevenImg from './assets/photos/image_7.JPG';
 import eightImg from './assets/photos/eightImg.JPG';
 import nineImg from './assets/photos/nineImg.JPG';
 import tenImg from './assets/photos/tenImg.JPG';
